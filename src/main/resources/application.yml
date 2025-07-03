@@ -21,3 +21,7 @@ springdoc:
 jwt:
   secret: "PsjOdFFvBWrbxTrFZouAJyVZ3rZ+/arAfZ8lllsEWF4Xf8KPxK90aji3BCTfCgLAUMLdjxpfELsA9VUu04aJEw=="
   expiration: 3600000
+
+mailboxlayer:
+  api:
+    key: 3c33c1bb9d62f1e11b91d6704a514bd6

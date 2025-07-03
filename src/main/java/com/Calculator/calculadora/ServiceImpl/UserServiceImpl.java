@@ -1,10 +1,12 @@
 package com.Calculator.calculadora.ServiceImpl;
 
 import com.Calculator.calculadora.Entity.UserEntity;
+import com.Calculator.calculadora.Exception.InvalidEmailException;
 import com.Calculator.calculadora.Exception.UserAlreadyExistsException;
 import com.Calculator.calculadora.Repository.UserRepository;
 import com.Calculator.calculadora.Request.UserRequest;
 import com.Calculator.calculadora.Response.UserResponse;
+import com.Calculator.calculadora.Service.EmailValidationService;
 import com.Calculator.calculadora.Service.UserService;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,19 +20,26 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final EmailValidationService emailValidationService;
 
     public UserServiceImpl(
         UserRepository userRepository,
-        PasswordEncoder passwordEncoder
+        PasswordEncoder passwordEncoder,
+        EmailValidationService emailValidationService
     ) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.emailValidationService = emailValidationService;
     }
 
     @Override
     public UserResponse registrarUsuario(UserRequest usuario) {
         if (userRepository.findByUser(usuario.getUser()).isPresent()) {
             throw new UserAlreadyExistsException("El nombre de usuario ya está registrado");
+        }
+
+        if (!emailValidationService.esEmailValido(usuario.getEmail())) {
+            throw new InvalidEmailException("El correo electrónico no es válido o no existe.");
         }
 
         UserEntity userEntity = new UserEntity();

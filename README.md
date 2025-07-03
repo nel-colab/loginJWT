@@ -12,7 +12,7 @@ Este proyecto es un servicio backend construido con **Spring Boot** que permite 
 - Integración con base de datos (ej. H2, MySQL, PostgreSQL)
 - Gestión de errores y respuestas claras para el cliente
 - Registro de operaciones y validación con token JWT
-
+- Swagger
 ---
 
 ## 🚀 Requisitos
@@ -23,7 +23,10 @@ Este proyecto es un servicio backend construido con **Spring Boot** que permite 
 - Una cuenta en [MailboxLayer](https://mailboxlayer.com/) para obtener la API Key
 
 ---
+##URL Swagger
+http://localhost:8080/swagger-ui/index.html#/
 
+---
 ## 🔧 Instalación y ejecución
 
 ### 1. Clonar el repositorio
